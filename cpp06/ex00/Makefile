@@ -1,14 +1,16 @@
-NAME		=	Sed
+NAME		=	convert
 
-SRCS		=	main.cpp			
+SRCS		=	main.cpp				\
 
-SRCS_DIR	=	.
+
+
+SRCS_DIR	=	srcs
 
 CC			=	c++
 
 RM			=	rm -rf
 
-CFLAGS		=	-Wall -Wextra -Werror -std=c++98 -g #-I~/Desktop/termios/inc
+CFLAGS		=	-Wall -Wextra -Werror -std=c++98 -g -Iinc #-I~/Desktop/termios/inc
 
 OBJS			=	$(addprefix $(OBJS_DIR)/, $(SRCS:%.cpp=%.o))
 

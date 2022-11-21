@@ -1,120 +1,50 @@
 #include <iostream> 
 #include <fstream>
 #include <string>
+#include <stdio.h>
+#include <string.h>
 
-// int	main(int ac, char **av)
-// {
-// 	if (ac != 4)
-// 		return (std::cout << "./sed takes three parameters in the following order: a filename and two strings, s1 and s2.", 1);
-// 	std::ifstream ifs(av[1], std::ifstream::binary);
-// 	if (!ifs)
-// 		return (std::cout << av[1] << ": no such file or directory" << std::endl, 1);
-// 	// get length of file:
-//    ifs.seekg(0,ifs.end);
-//     int length =ifs.tellg();
-// 	// std::cout <<ifs.tellg();
-//    ifs.seekg(0,ifs.beg);
-
-//     // allocate memory:
-//     char * buffer = new char [length];
-
-//     // read data as a block:
-//    ifs.read(buffer,length);
-
-
-//    ifs.close();
-
-//     // print content:
-//     std::cout.write(buffer,length);
-// 	// std::cout <<ifs.tellg();
-
-//     delete[] buffer;
-// }
-
-// #include <iostream>     // std::cout
-// #include <fstream>      // std::ifstream
-
-// int main () {
-//   std::ifstream is("test.txt", std::ifstream::binary);
-//   if (is) {
-//     // get length of file:
-//     is.seekg(0, is.end);
-//     int length = is.tellg();
-// 	std::cout << is.tellg();
-//     is.seekg(0, is.beg);
-
-//     // allocate memory:
-//     char * buffer = new char [length];
-
-//     // read data as a block:
-//     is.read(buffer,length);
-
-//     is.close();
-
-//     // print content:
-//     std::cout.write(buffer,length);
-// 	// std::cout << is.tellg();
-
-//     delete[] buffer;
-//   }
-
-//   return 0;
-// }
-
-const char	*create_replace(char *name, int len_name)
-{
-	int i = 0;
-	while (name[i])
-		i++;
-	int	len_name = i;
-	char	*char_replace = new(len_name + 8);
-	i = 0;
-	while (i < len_name)
-	{
-		char_replace[i] = name[i];
-		i++;
-	}
-	int j = 0;
-	const char	*dot_replace = ".replace";
-	while (j < 8){
-		char_replace[i + j] = dot_replace[j];
-		j++;
-	}
-	char_replace[i + j] = 0;
-	const char	*replace = char_replace;
-	return (replace);
-}
-
-int main (int ac, char **av) {
+int	main(int ac, char **av){
 	if (ac != 4)
-		return (std::cout << "./sed takes three parameters in the following order: a filename and two strings, s1 and s2.", 1);
-	create_replace(av[1]);
-	// std::ifstream	infile;
-
-	// infile.open(av[1]);
-	// if (!infile)
-	// 	return (std::cout << av[1] << ": no such file or directory" << std::endl, 1);
-	// infile.seekg(0, infile.end);
-
-	
-	
-	std::string replace = av[1];
-	replace += ".replace";
-
+		return (std::cout << "./Sed takes 3 parameters: a \"file\" and 2 strings s1 and s2, where s2 is going to replace s1 in \"file\"" << std::endl, 1);
+	std::ifstream	infile;
+	infile.open(av[1]);
+	if (!infile.good())
+		return (std::cout << av[1] << ": error opening it" << std::endl, 1);
+	infile.seekg(0, infile.end);
+	int	len = infile.tellg();
+	if (len == -1)
+		return (std::cout << av[1] << ": error trying to get its length" << std::endl, 1);
+	infile.seekg(0, infile.beg);
+	char	*buf = new char[len + 1];
+	if (!infile.read(buf, len))
+		return (std::cout << "error reading" << std::endl, 1);
+	buf[len] = 0;
+	infile.close();
+	std::string s1 = av[2];
+	std::string s2 = av[3];
+	std::string replaced = av[1];
+	replaced += ".replace";
 	std::ofstream outfile;
-	outfile.open (replace);
-	outfile.seekp(0, outfile.end);
-	// int	length = outfile.tellp();
-	// char	*buffer = new char[length];
-	
-	outfile.write ("This is an apple",16);
-	long pos = outfile.tellp();
-	outfile.seekp (pos-7);	
-	outfile.write (" sam 123456789",14);
-	pos = outfile.tellp();
-	outfile.seekp (pos-2);
-	outfile.write (" sam 123456789",14);
+	outfile.open(replaced.c_str());
+	std::string	replacing;
+	std::string beubeuf = buf;
+	std::size_t	found = beubeuf.find(s1);
+	size_t	i = 0;
+	while (beubeuf[i])
+	{
+		if (found != std::string::npos && found == i)
+		{
+			replacing += s2;
+			found = beubeuf.find(s1, found+s2.length() - 1);
+			i += s1.length() - 1;
+		}
+		else
+			replacing += beubeuf[i];
+		i++;
+	}
+	outfile << replacing;
+	delete [] buf;
 	outfile.close();
-
-  return 0;
+	infile.close();
 }

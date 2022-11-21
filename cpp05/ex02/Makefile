@@ -1,14 +1,21 @@
-NAME		=	Sed
+NAME		=	Bureaucrat
 
-SRCS		=	main.cpp			
+SRCS		=	main.cpp									\
+				Bureaucrat.class.cpp						\
+				AForm.class.cpp								\
+				ShrubberyCreationForm.class.cpp				\
+				RobotomyRequestForm.class.cpp				\
+				PresidentialPardonForm.class.cpp			
 
-SRCS_DIR	=	.
+
+
+SRCS_DIR	=	srcs
 
 CC			=	c++
 
 RM			=	rm -rf
 
-CFLAGS		=	-Wall -Wextra -Werror -std=c++98 -g #-I~/Desktop/termios/inc
+CFLAGS		=	-Wall -Wextra -Werror -std=c++98 -g -Iinc #-I~/Desktop/termios/inc
 
 OBJS			=	$(addprefix $(OBJS_DIR)/, $(SRCS:%.cpp=%.o))
 
