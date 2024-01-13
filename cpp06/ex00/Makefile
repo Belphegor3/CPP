@@ -1,6 +1,7 @@
 NAME		=	convert
 
 SRCS		=	main.cpp				\
+				display.cpp
 
 
 

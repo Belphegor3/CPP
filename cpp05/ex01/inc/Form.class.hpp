@@ -21,8 +21,22 @@ class Form{
 		void		setSignGrade(int i);
 		void		setExecuteGrade(int i);
 		void		beSigned(Bureaucrat const& random);
-		void		GradeTooHighException();
-		void		GradeTooLowException();
+		class GradeTooHighException : public std::exception
+		{
+			public:
+				virtual const char *what() const throw()
+				{
+					return ("Grade too high");
+				}
+		};
+		class GradeTooLowException : public std::exception
+		{
+			public:
+				virtual const char *what() const throw()
+				{
+					return ("Grade too low");
+				}
+		};
 
 	private:
 		std::string const	_name;

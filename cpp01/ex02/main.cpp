@@ -1,6 +1,9 @@
 #include <string>
 #include <iostream>
-// #include 
+/*
+Les références sont souvent utilisées pour les arguments de fonction ou pour retourner une valeur d'une fonction,
+tandis que les pointeurs sont souvent utilisés pour passer des informations par adresse ou pour créer des objets dynamiques.
+*/
 
 int	main(void){
 	std::string	test = "HI THIS IS BRAIN";

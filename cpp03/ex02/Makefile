@@ -1,6 +1,8 @@
 NAME		=	FragTrap
 
-SRCS		=	main.cpp			
+SRCS		=	main.cpp			\
+				ClapTrap.class.cpp	\
+				FragTrap.class.cpp
 
 SRCS_DIR	=	srcs
 

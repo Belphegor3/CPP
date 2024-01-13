@@ -1,6 +1,7 @@
-NAME		=	Zombie
+NAME		=	Fixed
 
-SRCS		=	main.cpp			
+SRCS		=	main.cpp			\
+				Fixed.class.cpp
 
 SRCS_DIR	=	srcs
 

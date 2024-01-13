@@ -1,6 +1,7 @@
 NAME		=	Harl
 
-SRCS		=	main.cpp			\	
+SRCS		=	main.cpp		\
+				Harl.class.cpp
 				
 
 SRCS_DIR	=	srcs

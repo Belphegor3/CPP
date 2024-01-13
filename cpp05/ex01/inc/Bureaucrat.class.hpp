@@ -9,6 +9,8 @@ class Bureaucrat{
 	public:
 		Bureaucrat();
 		Bureaucrat(std::string name);
+		Bureaucrat(std::string name, int grade);
+		Bureaucrat(int grade, std::string name);
 		Bureaucrat(Bureaucrat const & src);
 		~Bureaucrat();
 		Bureaucrat &	operator=(Bureaucrat const& rhs);
@@ -17,8 +19,22 @@ class Bureaucrat{
 		std::string	getName() const;
 		int			getGrade() const;
 		void		setGrade(int i);
-		void		GradeTooHighException();
-		void		GradeTooLowException();
+		class GradeTooHighException : public std::exception
+		{
+			public:
+				virtual const char *what() const throw()
+				{
+					return ("Grade too high");
+				}
+		};
+		class GradeTooLowException : public std::exception
+		{
+			public:
+				virtual const char *what() const throw()
+				{
+					return ("Grade too low");
+				}
+		};
 		void		signForm(Form const & form);
 
 	private:

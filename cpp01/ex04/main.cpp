@@ -4,6 +4,13 @@
 #include <stdio.h>
 #include <string.h>
 
+int	occurence(std::string s1, std::string s2){
+	std::size_t found = s2.find(s1);
+	if (found != std::string::npos)
+		return 1;
+	return 0;
+}
+
 int	main(int ac, char **av){
 	if (ac != 4)
 		return (std::cout << "./Sed takes 3 parameters: a \"file\" and 2 strings s1 and s2, where s2 is going to replace s1 in \"file\"" << std::endl, 1);
@@ -30,21 +37,21 @@ int	main(int ac, char **av){
 	std::string	replacing;
 	std::string beubeuf = buf;
 	std::size_t	found = beubeuf.find(s1);
-	size_t	i = 0;
-	while (beubeuf[i])
-	{
-		if (found != std::string::npos && found == i)
-		{
-			replacing += s2;
-			found = beubeuf.find(s1, found+s2.length() - 1);
-			i += s1.length() - 1;
-		}
+	int	occurance = occurence(s1, s2);
+	if (s1.length() == 0)
+		return (outfile << buf, delete [] buf, outfile.close(), infile.close(), 0);
+	while (found != std::string::npos){
+		beubeuf.erase(found, s1.length());
+		beubeuf.insert(found, s2);
+		if (occurance == 0)
+			found = beubeuf.find(s1, found);
 		else
-			replacing += beubeuf[i];
-		i++;
+			found = beubeuf.find(s1, found+s2.length());
 	}
-	outfile << replacing;
+	std::cout << beubeuf << std::endl;
+	outfile << beubeuf;
 	delete [] buf;
 	outfile.close();
 	infile.close();
+	return (0);
 }

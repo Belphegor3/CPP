@@ -1,4 +1,4 @@
-#include "Weapon.class.hpp"
+// #include "Weapon.class.hpp"
 #include "HumanA.class.hpp"
 #include "HumanB.class.hpp"
 

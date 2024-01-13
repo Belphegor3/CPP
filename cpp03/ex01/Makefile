@@ -1,6 +1,8 @@
 NAME		=	ScavTrap
 
-SRCS		=	main.cpp			
+SRCS		=	main.cpp			\
+				ClapTrap.class.cpp	\
+				ScavTrap.class.cpp
 
 SRCS_DIR	=	srcs
 

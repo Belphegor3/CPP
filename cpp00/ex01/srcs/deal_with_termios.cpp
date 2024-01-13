@@ -1,7 +1,6 @@
 #include "Phonebook.hpp"
 
 int	quit_or_again(void) {
-
 	Term::setRaw();
 	std::atexit(Term::restoreTerm);
 	std::cout << CURSOR_OFF;
@@ -37,9 +36,9 @@ void	term_window(void) {
 	std::atexit(Term::restoreTerm);
 	std::cout << CLEAR;
 	std::cout << CURSOR_OFF;
-	std::cout << "\x1b[26;75H\x1b[1;38;5;57mThere are no contacts yet, go ADD some !\x1b[0m";
-	std::cout << "\x1b[24;75H\x1b[1;38;5;57mThere are no contacts yet, go ADD some !\x1b[0m";
-	std::cout << "\x1b[28;75H\x1b[1;38;5;57mThere are no contacts yet, go ADD some !\x1b[0m";
+	std::cout << "\x1b[32;100H\x1b[1;38;5;57mThere are no contacts yet, go ADD some !\x1b[0m";
+	std::cout << "\x1b[34;100H\x1b[1;38;5;57mThere are no contacts yet, go ADD some !\x1b[0m";
+	std::cout << "\x1b[36;100H\x1b[1;38;5;57mThere are no contacts yet, go ADD some !\x1b[0m";
 	std::flush(std::cout);
 	sleep(4);
 	std::cout << CLEAR;

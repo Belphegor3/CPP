@@ -56,31 +56,12 @@ int	Form::getExecuteGrade() const {
 	return _execute_grade;
 }
 
-void	Form::GradeTooHighException(){
-	std::cout << "Grade is too high" << std::endl;
-}
-
-void	Form::GradeTooLowException(){
-	std::cout << "Grade is too low" << std::endl;
-}
-
 void	Form::beSigned(Bureaucrat const& random){
 	int	i = random.getGrade();
-	try{
 		if (i < 1)
-			throw std::exception();
-	}
-	catch(std::exception & GradeTooHighException){
-		this->GradeTooHighException();
-	}
-	try{
+			throw GradeTooHighException();
 		if (i > 150 || i > _sign_grade)
-			throw std::exception();
-	}
-	catch(std::exception & GradeTooLowException){
-		this->GradeTooLowException();
-	}
-	if (i > 0 && i < 151 && i < _sign_grade)
+			throw GradeTooLowException();
 		_signed = true;
 }
 

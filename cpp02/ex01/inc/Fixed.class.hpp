@@ -1,59 +1,27 @@
 #ifndef FIXED_CLASS_HPP
 # define FIXED_CLASS_HPP
 
-#include <iostream>
+# include <iostream>
+# include <cmath>
 
 class Fixed
 {
 	private:
-		int	_dot;
-		static const int	_nb_bits;	
+		int	_res;
+		static const int	_neg_bits = 8;	
 	public:
 		Fixed(void);
-		Fixed(const int);
-		Fixed(const float);
+		Fixed(const int i);
+		Fixed(const float f);
 		Fixed(Fixed const & src);
 		~Fixed();
 		Fixed &	operator=(Fixed const & rhs);
 		int	getRawBits(void) const;
 		void	setRawBits(int const raw);
-
+		float	toFloat(void) const;
+		int		toInt() const;
 };
 
-Fixed::Fixed(void): _dot(0)
-{
-	std::cout << "Default constructor called" << std::endl;
-}
-
-Fixed::Fixed(Fixed const & src)
-{
-	std::cout << "Copy constructor called" << std::endl;
-	*this = src;
-}
-
-Fixed::~Fixed()
-{
-	std::cout << "Destructor called" << std::endl;
-}
-
-Fixed &	Fixed::operator=(Fixed const & rhs)
-{
-	std::cout << "Copy assignement operator called" << std::endl;
-	if (this != &rhs)
-		this->_dot = rhs.getRawBits();
-	return *this;
-}
-
-int	Fixed::getRawBits(void) const
-{
-	std::cout << "getRawBits member fonction called" << std::endl;
-	return _dot;
-}
-
-void	Fixed::setRawBits(int const raw)
-{
-	std::cout << "setRawBits member fonction called" << std::endl;
-	_dot = raw;
-}
+std::ostream &operator<<(std::ostream &out, const Fixed &src);
 
 #endif

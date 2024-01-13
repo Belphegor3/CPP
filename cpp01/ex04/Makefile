@@ -8,7 +8,7 @@ CC			=	c++
 
 RM			=	rm -rf
 
-CFLAGS		=	-Wall -Wextra -Werror -std=c++98 -g #-I~/Desktop/termios/inc
+CFLAGS		=	-Wall -Wextra -Werror -std=c++98 -g3 #-I~/Desktop/termios/inc
 
 OBJS			=	$(addprefix $(OBJS_DIR)/, $(SRCS:%.cpp=%.o))
 

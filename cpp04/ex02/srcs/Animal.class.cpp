@@ -9,8 +9,3 @@ AAnimal::~AAnimal()
 std::string const&	AAnimal::getType() const{
 	return (type);
 }
-
-void	AAnimal::makeSound() const
-{
-	std::cout << "unknown sound" << std::endl;
-}

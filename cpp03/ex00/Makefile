@@ -1,6 +1,7 @@
 NAME		=	ClapTrap
 
-SRCS		=	main.cpp			
+SRCS		=	main.cpp			\
+				ClapTrap.class.cpp
 
 SRCS_DIR	=	srcs
 

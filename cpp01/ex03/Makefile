@@ -1,6 +1,9 @@
-NAME		=	Zombie
+NAME		=	Zombie_attack
 
-SRCS		=	main.cpp			
+SRCS		=	Weapon.class.cpp	\
+				main.cpp			\
+				HumanA.class.cpp	\
+				HumanB.class.cpp	\
 
 SRCS_DIR	=	srcs
 
